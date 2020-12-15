@@ -1,14 +1,15 @@
 import os
+import sys
+sys.path.append('/'.join(__file__.split("/")[:-2]))
+from standalone.udfs import *
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-input_file_name = dir_path + "/Input.txt"
+fh = inputFileHandler(__file__, "Input.txt")
 input_list = []
 valid_pwd = 0
 invalid_pwd = 0
 
-with open(input_file_name, "r") as fh:
-    for line in fh:
-        input_list.append(line.strip().split())
+for line in fh:
+    input_list.append(line.strip().split())
 
 for item in input_list:
     [pos1Val, pos2Val] = item[0].split('-')
