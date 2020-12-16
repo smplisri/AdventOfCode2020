@@ -24,6 +24,13 @@ def seatIdentifier(input):
     seat = input[-3:]
     return (rowConversion(row) * 8) + seatConversion(seat)
 
-formatted_seats = map(lambda x: seatIdentifier(x.strip()), lines_list)
+formatted_seats = list(map(lambda x: seatIdentifier(x.strip()), lines_list))
+min_seat_id = str(reduce(lambda x,y: x if x < y else y, formatted_seats))
+max_seat_id = str(reduce(lambda x,y: x if x > y else y, formatted_seats))
+print("The MIN seat ID --> " + min_seat_id)
+print("The MAX seat ID --> " + max_seat_id)
 
-print("The MAX seat ID --> " + str(reduce(lambda x,y: x if x > y else y, formatted_seats)))
+formatted_seats.sort()
+
+missing_seats = [x for x in range(int(min_seat_id), int(max_seat_id)) if x not in formatted_seats]
+print(f"Missing seat number are --> {missing_seats}")
