@@ -4,11 +4,6 @@ import sys
 sys.path.append('/'.join(__file__.split("/")[:-2]))
 from standalone.udfs import *
 
-def passportFormatter(lines_list, delimiter):
-    formatted_list = map(lambda x: x.strip() if x != delimiter else x, lines_list)
-    return ' '.join(formatted_list).split(' ' + delimiter + ' ')
-
-
 fh = inputFileHandler(__file__, "Input.txt")
 lines_list = fh.readlines()
 delimiter = "\n"
@@ -25,7 +20,7 @@ key_lst = [
     { 'key': 'cid', 'required': False }
 ]
 
-for line in passportFormatter(lines_list, delimiter):
+for line in lineSepGroupFormatter(lines_list, delimiter, ' '):
     for item in line.strip().split():
         key = item.split(":")[0]
         value = item.split(":")[1]
