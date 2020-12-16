@@ -6,7 +6,7 @@ from standalone.udfs import *
 
 def passportFormatter(lines_list, delimiter):
     formatted_list = map(lambda x: x.strip() if x != delimiter else x, lines_list)
-    return ' '.join(formatted_list).split(' \n ')
+    return ' '.join(formatted_list).split(' ' + delimiter + ' ')
 
 
 fh = inputFileHandler(__file__, "Input.txt")
